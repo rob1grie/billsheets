@@ -28,15 +28,15 @@
 					</button>
 
 					<a class="navbar-brand text-uppercase" href="#">
-						My contact
+						BillSheets
 					</a>
 				</div>
 				<!-- /.navbar-header -->
 				<div class="collapse navbar-collapse" id="navbar-collapse">
 					<div class="nav navbar-right navbar-btn">
-						<a href="form.html" class="btn btn-default">
+						<a href="{{ route('payees.create') }}" class="btn btn-default">
 							<i class="glyphicon glyphicon-plus"></i>
-							Add Contact
+							Add Payee
 						</a>
 					</div>
 				</div>

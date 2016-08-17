@@ -28,7 +28,7 @@ class PayeesController extends Controller
      */
     public function create()
     {
-        //
+        return view('payees.create');
     }
 
     /**
