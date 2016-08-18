@@ -14,7 +14,7 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('last_view')->nullable();
+			$table->string('last_view')->nullable();	// Store the view that was last used
             $table->timestamps();
         });
     }
