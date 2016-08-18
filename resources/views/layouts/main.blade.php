@@ -34,22 +34,22 @@
 				<!-- /.navbar-header -->
 				<div class="collapse navbar-collapse" id="navbar-collapse">
 					<div class="nav navbar-right navbar-btn">
-						<a href="{{ route('payees.create') }}" class="btn btn-default">
-							<i class="glyphicon glyphicon-plus"></i>
-							Add Payee
-						</a>
+						<a href="{{ route('payees.index') }}" 
+						   class="list-group-item {{ empty($selected_group) ? 'active' : '' }}">Payees</a>
 					</div>
 				</div>
 			</div>
 		</nav>		
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3">
-					<div class="list-group">
-						<a href="{{ route('payees.index') }}" class="list-group-item {{ empty($selected_group) ? 'active' : '' }}">Payees <span class="badge">{{ App\Payee::count() }}</span></a>
+				
+				<div class="col-md-12">
+					@if (session('message'))
+					<div class="alert alert-success">
+						{{ session('message') }}
 					</div>
-				</div><!-- /.col-md-3 -->
-				<div class="col-md-9">
+					@endif
+					
 					@yield('content')
 				</div>
 			</div>

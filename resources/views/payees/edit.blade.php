@@ -3,12 +3,12 @@
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<strong>Add Payee</strong>
+		<strong>Edit Payee</strong>
 	</div>
-	{!! Form::open(['route' => 'payees.store']) !!}
+	{!! Form::model($payee, ['route' => ['payees.update', $payee->id], 'method' => 'PATCH']) !!}
 
 	@include('payees.form')
-	
+
 	{!! Form::close() !!}
 </div>
 
