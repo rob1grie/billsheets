@@ -34,6 +34,8 @@
 				<!-- /.navbar-header -->
 				<div class="collapse navbar-collapse" id="navbar-collapse">
 					<div class="nav navbar-right navbar-btn">
+						<a href="{{ route('bills.index') }}" 
+						   class="list-group-item {{ empty($selected_group) ? 'active' : '' }}">Bills</a>
 						<a href="{{ route('payees.index') }}" 
 						   class="list-group-item {{ empty($selected_group) ? 'active' : '' }}">Payees</a>
 					</div>
