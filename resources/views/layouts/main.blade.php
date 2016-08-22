@@ -27,31 +27,32 @@
 						<span class="icon-bar"></span>
 					</button>
 
-					<a class="navbar-brand text-uppercase" href="#">
+					<a class="navbar-brand text-uppercase" href="/">
 						BillSheets
 					</a>
 				</div>
 				<!-- /.navbar-header -->
+				<?php $view = substr($_SERVER['REQUEST_URI'], 1); ?>
 				<div class="collapse navbar-collapse" id="navbar-collapse">
-					<div class="nav navbar-right navbar-btn">
-						<a href="{{ route('bills.index') }}" 
-						   class="list-group-item {{ empty($selected_group) ? 'active' : '' }}">Bills</a>
-						<a href="{{ route('payees.index') }}" 
-						   class="list-group-item {{ empty($selected_group) ? 'active' : '' }}">Payees</a>
-					</div>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="btn-wide {{ $view === 'bills' ? 'active' : '' }}"><a href="{{ route('bills.index') }}" 
+							   class="list-group-item">Bills</a></li>
+						<li class="btn-wide pad-left-10 {{ $view === 'payees' ? 'active' : '' }}"><a href="{{ route('payees.index') }}" 
+							   class="list-group-item">Payees</a></li>
+					</ul>
 				</div>
 			</div>
 		</nav>		
 		<div class="container">
 			<div class="row">
-				
+
 				<div class="col-md-12">
 					@if (session('message'))
 					<div class="alert alert-success">
 						{{ session('message') }}
 					</div>
 					@endif
-					
+
 					@yield('content')
 				</div>
 			</div>

@@ -63,3 +63,8 @@ address {
   line-height: 1.428571429;
   border-radius: 15px;
 }
+
+.btn-wide {
+	width: 100px;
+	text-align: center;
+}
