@@ -11,13 +11,12 @@ class BillsController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index() {
-		$currentDate = getdate();
+	public function index($currentDate = null) {
+		if (!$currentDate) $currentDate = getdate();
 		$currentMonth = $currentDate['mon'];
 		$currentYear = $currentDate['year'];
-		$months = BillsController::getMonths();
 		$bills = Bill::all();
-		return view('bills.index', compact('bills', 'months', 'currentMonth', 'currentYear'));
+		return view('bills.index', compact('bills', 'currentMonth', 'currentYear'));
 	}
 
 	/**
@@ -78,24 +77,6 @@ class BillsController extends Controller {
 	 */
 	public function destroy($id) {
 		//
-	}
-
-	public function getMonths() {
-		// Returns array of months
-		$months[1] = 'January';
-		$months[2] = 'February';
-		$months[3] = 'March';
-		$months[4] = 'April';
-		$months[5] = 'May';
-		$months[6] = 'June';
-		$months[7] = 'July';
-		$months[8] = 'August';
-		$months[9] = 'September';
-		$months[10] = 'October';
-		$months[11] = 'November';
-		$months[12] = 'December';
-
-		return $months;
 	}
 
 }

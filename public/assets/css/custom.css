@@ -68,3 +68,29 @@ address {
 	width: 100px;
 	text-align: center;
 }
+
+.panel {
+	 padding-left: 10px; 
+	 padding-right: 10px;
+}
+
+/* Table formatting */
+.column-payee {
+	width: 25%;
+}
+
+.column-date {
+	width: 10%;
+}
+
+.column-pmnt {
+	width: 10%;
+}
+
+.column-chk {
+	width: 5%;
+}
+
+.column-comments {
+	width: 30%;
+}

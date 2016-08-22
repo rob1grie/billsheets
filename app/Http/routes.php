@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('bills.index');
-});
+Route::get('/', 'BillsController@index');
 
 Route::resource('payees', 'PayeesController');
 
