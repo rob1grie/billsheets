@@ -25,7 +25,7 @@ class BillsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		//
+		return view('bills.create');
 	}
 
 	/**

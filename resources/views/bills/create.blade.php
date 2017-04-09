@@ -1,13 +1,15 @@
 @extends('layouts.main')
 
+@section('title', 'Add Bill')
+
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<strong>Add Payee</strong>
+		<strong>Add Bill</strong>
 	</div>
-	{!! Form::open(['route' => 'payees.store']) !!}
+	{!! Form::open(['route' => 'bills.store']) !!}
 
-	@include('payees.form')
+	@include('bills.form')
 	
 	{!! Form::close() !!}
 </div>

@@ -12,6 +12,15 @@
 					</div>
 					@endif
                     <div class="form-group">
+						<div class="col-md-8">
+							<span style="vertical-align: middle; padding-right: 15px;">
+								Repeating {!! Form::radio('repeating', 'Yes', true) !!}
+							</span>
+							<span>One-time {!! Form::radio('repeating', 'No') !!}</span>
+						</div>
+                    </div>
+
+                   <div class="form-group">
 						<label for="name" class="control-label col-md-3">Payee Name</label>
 						<div class="col-md-8">
 							{!! Form::text('name', null, ['class' => 'form-control']) !!}
@@ -25,17 +34,7 @@
 						</div>
                     </div>
 
-                    <div class="form-group">
-						<label for="email" class="control-label col-md-3">Repeats?</label>
-						<div class="col-md-8">
-							<span style="vertical-align: middle; padding-right: 15px;">
-								Yes {!! Form::radio('repeating', 'Yes', true) !!}
-							</span>
-							<span>No {!! Form::radio('repeating', 'Auto') !!}</span>
-						</div>
-                    </div>
-
-					<div class="form-group">
+ 					<div class="form-group">
 						<label for="name" class="control-label col-md-3">Budgeted Amount</label>
 						<div class="col-md-8">
 							{!! Form::text('default_amount', null, ['class' => 'form-control']) !!}
@@ -68,7 +67,7 @@
 				<div class="row">
                     <div class="col-md-offset-3 col-md-6">
 						<button type="submit" class="btn btn-primary">{{ !empty($payee->id) ? 'Update' : 'Save' }}</button>
-						<a href="{{ route('payees.index') }}" class="btn btn-default">Cancel</a>
+						<a href="{{ route('bills.index') }}" class="btn btn-default">Cancel</a>
                     </div>
 				</div>
 			</div>

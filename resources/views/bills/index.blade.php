@@ -4,6 +4,9 @@
 	$currentDate = date_create($currentYear . '-' . $currentMonth . '-01');	// date_create needs format yyyy-mm-dd
 ?>
 
+<?php $title = 'Bills List for ' . date_format($currentDate, 'F Y'); ?>
+@section('title', $title)
+
 @section('content')
 <div class="panel panel-default">
 	<div class="nav navbar-right navbar-btn">

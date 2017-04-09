@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Payees List')
+
 @section('content')
 
 <div class="panel panel-default">
