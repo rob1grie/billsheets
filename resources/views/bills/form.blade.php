@@ -26,7 +26,7 @@
 					{!! Form::label('name', 'Payee Name', ['class' => 'control-label col-md-3']) !!}
 					<div class="col-md-8" id='name-div'>
 						{!! Form::text('name_text', null, ['class' => 'form-control', 'id' => 'name_text', "placeholder" => "Enter the Payee's name"]) !!}
-						{!! Form::select('name_select', [], null, ['class' => 'form-control', 'id' => 'name_select', "placeholder" => "Select the Payee"]) !!}
+						{!! Form::select('name_select', $payees_select, null, ['class' => 'form-control', 'id' => 'name_select', "placeholder" => "Select the Payee"]) !!}
 					</div>
 				</div>
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Bill;
+use App\Payee;
 use App\Http\Requests;
 
 class BillsController extends Controller {
@@ -25,7 +26,9 @@ class BillsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('bills.create');
+		$payees = Payee::orderBy('name')->get();
+		
+		return view('bills.create', compact('payees'));
 	}
 
 	/**

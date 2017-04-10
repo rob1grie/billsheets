@@ -1,4 +1,12 @@
 @extends('layouts.main')
+<?php 
+$payees_select = array();
+
+foreach ($payees as $payee) {
+	$payees_select[$payee->id] = $payee->name;
+}
+?>
+
 
 @section('title', 'Add Bill')
 

@@ -43,10 +43,4 @@
 		@endforeach
 	</table>
 </div>
-
-<div class="text-center">
-	<nav>
-		{!! $payees->links() !!}
-	</nav>
-</div>
 @endsection
