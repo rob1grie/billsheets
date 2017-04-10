@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Payday;
 use App\Http\Requests;
 
 class PaydaysController extends Controller
 {
+	private $rules = [
+		'start_date' => ['required'],
+		'frequency' => ['required', 'numeric', 'min:1'],
+		'amount' => ['required', 'numeric']
+	];
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,9 @@ class PaydaysController extends Controller
      */
     public function index()
     {
-        //
+        $paydays = Payday::orderBy('start_date')->paginate(10);
+
+		return view('paydays.index', compact('paydays'));
     }
 
     /**
@@ -25,7 +33,7 @@ class PaydaysController extends Controller
      */
     public function create()
     {
-        //
+        return view('paydays.create');
     }
 
     /**
@@ -36,7 +44,11 @@ class PaydaysController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$this->validate($request, $this->rules);
+
+		Payday::create($request->all());
+
+		return redirect('paydays')->with('message', 'Payday saved');
     }
 
     /**
@@ -58,7 +70,8 @@ class PaydaysController extends Controller
      */
     public function edit($id)
     {
-        //
+		$payday = Payday::find($id);
+		return view('paydays.edit', compact('payday'));
     }
 
     /**
@@ -70,7 +83,14 @@ class PaydaysController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+		$this->validate($request, $this->rules);
+
+		$payday = Payday::find($id);
+		
+		$payday->update($request->all());
+
+		return redirect('paydays')->with('message', 'Payday Updated');
     }
 
     /**
@@ -81,6 +101,10 @@ class PaydaysController extends Controller
      */
     public function destroy($id)
     {
-        //
+		$payday = Payday::find($id);
+		
+		$payday->delete();
+		
+		return redirect('paydays')->with('message', 'Payday Deleted');
     }
 }

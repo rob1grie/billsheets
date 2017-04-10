@@ -12,50 +12,23 @@
 					</div>
 					@endif
                     <div class="form-group">
-						<label for="name" class="control-label col-md-3">Payee Name</label>
+						<label for="name" class="control-label col-md-3">Payday Start Date</label>
 						<div class="col-md-8">
-							{!! Form::text('name', null, ['class' => 'form-control']) !!}
+							{!! Form::date('start_date', \Carbon\Carbon::now()) !!}
 						</div>
                     </div>
 
                     <div class="form-group">
-						<label for="company" class="control-label col-md-3">Day of Month</label>
+						<label for="company" class="control-label col-md-3">How Often? (weeks)</label>
 						<div class="col-md-8">
-							{!! Form::text('day_of_month', null, ['class' => 'form-control', 'size' => 5]) !!}
-						</div>
-                    </div>
-
-                    <div class="form-group">
-						<label for="email" class="control-label col-md-3">Repeats?</label>
-						<div class="col-md-8">
-							<span style="vertical-align: middle; padding-right: 15px;">
-								Yes {!! Form::radio('repeating', 'Yes', true) !!}
-							</span>
-							<span>No {!! Form::radio('repeating', 'Auto') !!}</span>
+							{!! Form::number('frequency', 2, ['class' => 'form-control', 'size' => 5]) !!}
 						</div>
                     </div>
 
 					<div class="form-group">
-						<label for="name" class="control-label col-md-3">Budgeted Amount</label>
+						<label for="name" class="control-label col-md-3">Amount</label>
 						<div class="col-md-8">
-							{!! Form::text('default_amount', null, ['class' => 'form-control']) !!}
-						</div>
-                    </div>
-
-                    <div class="form-group">
-						<label for="group" class="control-label col-md-3">Account Number</label>
-						<div class="col-md-5">
-							{!! Form::text('account_number', null, ['class' => 'form-control']) !!}
-						</div>
-                    </div>
-
-                    <div class="form-group">
-						<label for="group" class="control-label col-md-3">Payment Method</label>
-						<div class="col-md-5">
-							<span style="vertical-align: middle; padding-right: 15px;">
-								Manual {!! Form::radio('payment_method', 'Manual', true) !!}
-							</span>
-							<span>Auto {!! Form::radio('payment_method', 'Auto') !!}</span>
+							{!! Form::text('amount', null, ['class' => 'form-control']) !!}
 						</div>
                     </div>
 				</div>
@@ -67,8 +40,8 @@
 			<div class="col-md-8">
 				<div class="row">
                     <div class="col-md-offset-3 col-md-6">
-						<button type="submit" class="btn btn-primary">{{ !empty($payee->id) ? 'Update' : 'Save' }}</button>
-						<a href="{{ route('payees.index') }}" class="btn btn-default">Cancel</a>
+						<button type="submit" class="btn btn-primary">{{ !empty($payday->id) ? 'Update' : 'Save' }}</button>
+						<a href="{{ route('paydays.index') }}" class="btn btn-default">Cancel</a>
                     </div>
 				</div>
 			</div>

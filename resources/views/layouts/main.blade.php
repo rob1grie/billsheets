@@ -8,7 +8,7 @@
 		<title>BillSheets Online - @yield('title')</title>
 
 		<!-- Bootstrap core CSS -->
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 		<!-- Custom styles for this template -->
 		<link href="/assets/css/custom.css" rel="stylesheet">
 
@@ -39,6 +39,8 @@
 							   class="list-group-item">Bills</a></li>
 						<li class="btn-wide pad-left-10 {{ $view === 'payees' ? 'active' : '' }}"><a href="{{ route('payees.index') }}" 
 							   class="list-group-item">Payees</a></li>
+						<li class="btn-wide pad-left-10 {{ $view === 'paydays' ? 'active' : '' }}"><a href="{{ route('paydays.index') }}" 
+							   class="list-group-item">Paydays</a></li>
 					</ul>
 				</div>
 			</div>

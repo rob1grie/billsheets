@@ -43,7 +43,7 @@ class PayeesController extends Controller {
 
 		Payee::create($request->all());
 
-		return redirect('payees')->with('message', 'Payee saved');
+		return redirect('payees')->with('message', 'Payee Saved');
 	}
 
 	/**
@@ -76,14 +76,13 @@ class PayeesController extends Controller {
 	 */
 	public function update(Request $request, $id) {
 
-
 		$this->validate($request, $this->rules);
 
 		$payee = Payee::find($id);
 		
 		$payee->update($request->all());
 
-		return redirect('payees')->with('message', 'Payee updated');
+		return redirect('payees')->with('message', 'Payee Updated');
 	}
 
 	/**

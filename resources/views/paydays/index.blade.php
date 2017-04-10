@@ -6,19 +6,25 @@
 
 <div class="panel panel-default">
 	<div class="nav navbar-right navbar-btn">
-		<a href="{{ route('payees.create') }}" class="btn btn-default">
+		<a href="{{ route('paydays.create') }}" class="btn btn-default">
 			<i class="glyphicon glyphicon-plus"></i>
-			Add Payee
+			Add Payday
 		</a>
 	</div>
-	<h3>Payees List</h3>
+	<h3>Paydays List</h3>
 	<table class="table">
+		<tr>
+			<td>Start Date</td>
+			<td>Amount</td>
+			<td>Frequency (weeks)</td>
+			<td>Edit/Delete</td>
+		</tr>
 		@foreach($paydays as $payday)
 		<tr>
 			<td class="middle">
 				<div class="media">
 					<div class="media-body">
-						{{ $payday->date }}
+						{{ $payday->start_date }}
 					</div>
 				</div>
 			</td>
