@@ -84,6 +84,7 @@
 		$('input:radio[name=repeating]').filter('[value="No"]').attr('checked', true);
 		$('#name_select').hide();
 		$('#name_text').show();
+		isRepeating();
 	});
 
 	function isRepeating() {
