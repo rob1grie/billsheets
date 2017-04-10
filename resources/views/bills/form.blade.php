@@ -14,19 +14,19 @@
 				<div class="form-group">
 					<div class="col-md-8">
 						<span style="vertical-align: middle; padding-right: 15px;">
-							Repeating {!! Form::radio('repeating', 'Yes', true) !!}
+							Repeating {!! Form::radio('repeating', 'Yes') !!}
 						</span>
 						<span>
-							One-time {!! Form::radio('repeating', 'No', ['onchange' => 'oneTime();']) !!}
+							One-time {!! Form::radio('repeating', 'No', true) !!}
 						</span>
 					</div>
 				</div>
 
 				<div class="form-group">
 					{!! Form::label('name', 'Payee Name', ['class' => 'control-label col-md-3']) !!}
-					<div class="col-md-8">
-						{!! Form::text('name_text', null, ['class' => 'form-control', 'disabled', 'id' => 'name_text']) !!}
-						{!! Form::select('name_select', [], null, ['class' => 'form-control', 'disabled', 'id' => 'name_select']) !!}
+					<div class="col-md-8" id='name-div'>
+						{!! Form::text('name_text', null, ['class' => 'form-control', 'id' => 'name_text', "placeholder" => "Enter the Payee's name"]) !!}
+						{!! Form::select('name_select', [], null, ['class' => 'form-control', 'id' => 'name_select', "placeholder" => "Select the Payee"]) !!}
 					</div>
 				</div>
 
@@ -79,8 +79,21 @@
 
 @section('script')
 <script type="text/javascript">
-	function oneTime() {
-		
+	$(document).ready(function () {
+		$("input:radio[name=repeating]").change(isRepeating);
+		$('input:radio[name=repeating]').filter('[value="No"]').attr('checked', true);
+		$('#name_select').hide();
+		$('#name_text').show();
+	});
+
+	function isRepeating() {
+		if ($('input[name=repeating]:checked').val() === 'Yes') {
+			$('#name_text').hide();
+			$('#name_select').show();
+		} else {
+			$('#name_select').hide();
+			$('#name_text').show();
+		}
 	}
 
 </script>
