@@ -13,7 +13,9 @@ class BillsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index($currentDate = null) {
-		if (!$currentDate) $currentDate = getdate();
+		if (!$currentDate) {
+			$currentDate = getdate();
+		}
 		$currentMonth = $currentDate['mon'];
 		$currentYear = $currentDate['year'];
 		$bills = Bill::all();
