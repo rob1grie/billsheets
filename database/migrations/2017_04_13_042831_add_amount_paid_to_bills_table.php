@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDeletedFieldToBillsTable extends Migration
+class AddAmountPaidToBillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddDeletedFieldToBillsTable extends Migration
     public function up()
     {
         Schema::table('bills', function (Blueprint $table) {
-			$table->boolean('deleted')->default(FALSE); 
+            $table->decimal('amount_paid', 7, 2); 
         });
     }
 
@@ -25,7 +25,7 @@ class AddDeletedFieldToBillsTable extends Migration
     public function down()
     {
         Schema::table('bills', function (Blueprint $table) {
-            $table->dropColumn('deleted');
+            $table->dropColumn('amount_paid');
         });
     }
 }
