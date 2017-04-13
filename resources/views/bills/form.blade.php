@@ -25,8 +25,17 @@
 				<div class="form-group">
 					{!! Form::label('name', 'Payee Name', ['class' => 'control-label col-md-3']) !!}
 					<div class="col-md-8" id='name-div'>
-						{!! Form::text('name_text', null, ['class' => 'form-control', 'id' => 'name_text', "placeholder" => "Enter the Payee's name"]) !!}
-						{!! Form::select('name_select', $payees_select, null, ['class' => 'form-control', 'id' => 'name_select', "placeholder" => "Select the Payee"]) !!}
+						{!! Form::text('name_text', null, 
+						['class' => 'form-control', 
+						'id' => 'name_text', 
+						'placeholder' => 'Enter the Payee\'s name',
+						'onBlur' => 'nameTextValidate()'
+						]) !!}
+						{!! Form::select('name_select', 
+						$payees_select, null, 
+						['class' => 'form-control', 
+						'id' => 'name_select', 
+						'placeholder' => 'Select the Payee']) !!}
 					</div>
 				</div>
 
@@ -79,6 +88,7 @@
 
 @section('script')
 <script type="text/javascript">
+
 	$(document).ready(function () {
 		$("input:radio[name=repeating]").change(isRepeating);
 		$('input:radio[name=repeating]').filter('[value="No"]').attr('checked', true);
@@ -94,6 +104,27 @@
 		} else {
 			$('#name_select').hide();
 			$('#name_text').show();
+		}
+	}
+
+	function nameTextValidate() {
+		// Validate that name_text entry doesn't already exist in Payees
+		var val = document.getElementById('name_text').value.toUpperCase();
+		for (index in payees_list) {
+			let payee = payees_list[index].name.toUpperCase();
+			if (payee === val) {
+				if (confirm("Payee " + payee + " already exists. Reuse this Payee?")) {
+					$('#name_select').value = payees_list[index].id;
+					$('#name_text').val(payees_list[index].name);
+				} else {
+					alert("The Payee Name field must be unique.\nMake some change in your entry so that it is unique");
+					$(document).ready(function () {
+						$('input[name=name_text]').focus();
+					});
+				}
+			} else {
+
+			}
 		}
 	}
 
