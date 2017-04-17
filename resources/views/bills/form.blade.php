@@ -43,6 +43,7 @@
 					{!! Form::label('day_of_month', 'Day of Month', ['class' => 'control-label col-md-3']) !!}
 					<div class="col-md-8">
 						{!! Form::text('day_of_month', null, ['class' => 'form-control', 'size' => 5]) !!}
+						{!! Form::date('date_due', \Carbon\Carbon::now(), ['class' => 'form-control', 'size' => 5]) !!}
 					</div>
 				</div>
 
@@ -56,7 +57,7 @@
 				<div class="form-group">
 					{!! Form::label('account_number', 'Account Number', ['class' => 'control-label col-md-3']) !!}
 					<div class="col-md-5">
-						{!! Form::text('account_number', null, ['class' => 'form-control']) !!}
+						{!! Form::text('account_number', null, ['class' => 'form-control', 'placeholder' => '(Optional)']) !!}
 					</div>
 				</div>
 
@@ -78,7 +79,7 @@
 		<div class="col-md-8">
 			<div class="row">
 				<div class="col-md-offset-3 col-md-6">
-					<button type="submit" class="btn btn-primary">{{ !empty($payee->id) ? 'Update' : 'Save' }}</button>
+					<button type="submit" class="btn btn-primary">{{ $mode === 'edit' ? 'Update' : 'Save' }}</button>
 					<a href="{{ route('bills.index') }}" class="btn btn-default">Cancel</a>
 				</div>
 			</div>
@@ -91,19 +92,34 @@
 
 	$(document).ready(function () {
 		$("input:radio[name=repeating]").change(isRepeating);
+		// Set One-Time to default
 		$('input:radio[name=repeating]').filter('[value="No"]').attr('checked', true);
+		// Hide select control and show text field
 		$('#name_select').hide();
 		$('#name_text').show();
+		// Hide Day of Month and show Date Due field
+		$('#day_of_month').hide();
+		$('input[name=date_due]').show();
+		// Set label to Date Due
+		$("label[for=day_of_month]").text("Date Due");
 		isRepeating();
 	});
 
 	function isRepeating() {
 		if ($('input[name=repeating]:checked').val() === 'Yes') {
+			// Repeating 
 			$('#name_text').hide();
 			$('#name_select').show();
+			$('input[name=date_due]').hide();
+			$('#day_of_month').show();
+			$("label[for=day_of_month]").text("Day of Month");
 		} else {
+			// One-Time
 			$('#name_select').hide();
 			$('#name_text').show();
+			$('#day_of_month').hide();
+			$('input[name=date_due]').show();
+			$("label[for=day_of_month]").text("Date Due");
 		}
 	}
 

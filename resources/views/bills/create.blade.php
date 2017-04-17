@@ -2,6 +2,7 @@
 <?php 
 $payees_select = array();	// Used as array for the select control
 $payees_array = array();	// Used in json_encode
+$mode = 'create';
 
 foreach ($payees as $payee) {
 	$payees_select[$payee->id] = $payee->name;
