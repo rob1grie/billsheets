@@ -1,4 +1,5 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -38,7 +39,7 @@ class PayeesController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		
+
 		$this->validate($request, $this->rules);
 
 		Payee::create($request->all());
@@ -79,7 +80,7 @@ class PayeesController extends Controller {
 		$this->validate($request, $this->rules);
 
 		$payee = Payee::find($id);
-		
+
 		$payee->update($request->all());
 
 		return redirect('payees')->with('message', 'Payee Updated');
@@ -93,9 +94,9 @@ class PayeesController extends Controller {
 	 */
 	public function destroy($id) {
 		$payee = Payee::find($id);
-		
+
 		$payee->delete();
-		
+
 		return redirect('payees')->with('message', 'Payee Deleted');
 	}
 
