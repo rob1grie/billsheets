@@ -5,11 +5,11 @@ $mode = 'edit';
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<strong>Edit Payee</strong>
+		<strong>Edit Bill</strong>
 	</div>
-	{!! Form::model($payee, ['route' => ['payees.update', $payee->id], 'method' => 'PATCH']) !!}
+	{!! Form::model($bill, ['route' => ['bills.update', $bill->id], 'method' => 'PATCH']) !!}
 
-	@include('payees.form')
+	@include('bills.form')
 
 	{!! Form::close() !!}
 </div>

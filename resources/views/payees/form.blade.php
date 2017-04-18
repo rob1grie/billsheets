@@ -29,9 +29,9 @@
 						<label for="email" class="control-label col-md-3">Repeats?</label>
 						<div class="col-md-8">
 							<span style="vertical-align: middle; padding-right: 15px;">
-								Yes {!! Form::radio('repeating', 'Yes', true) !!}
+								Yes {!! Form::radio('repeating', 'true', true) !!}
 							</span>
-							<span>No {!! Form::radio('repeating', 'Auto') !!}</span>
+							<span>No {!! Form::radio('repeating', 'false') !!}</span>
 						</div>
                     </div>
 
