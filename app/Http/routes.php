@@ -13,8 +13,6 @@
 
 Route::get('/', 'BillsController@index');
 
-Route::resource('payees', 'PayeesController');
-
 Route::resource('bills', 'BillsController');
 
 Route::resource('paydays', 'PaydaysController');

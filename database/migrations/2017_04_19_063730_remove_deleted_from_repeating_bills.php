@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateScheduledBillsTable extends Migration
+class RemoveDeletedFromRepeatingBills extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,8 @@ class CreateScheduledBillsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sch_bills', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema::table('repeating_bills', function (Blueprint $table) {
+            $table->dropColumn('deleted');
         });
     }
 
@@ -25,6 +24,8 @@ class CreateScheduledBillsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sch_bills');
+        Schema::table('repeating_bills', function (Blueprint $table) {
+            $table->boolean('deleted')->default(FALSE);
+        });
     }
 }

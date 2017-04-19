@@ -37,8 +37,6 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="btn-wide {{ $view === 'bills' ? 'active' : '' }}"><a href="{{ route('bills.index') }}" 
 							   class="list-group-item">Bills</a></li>
-						<li class="btn-wide pad-left-10 {{ $view === 'payees' ? 'active' : '' }}"><a href="{{ route('payees.index') }}" 
-							   class="list-group-item">Payees</a></li>
 						<li class="btn-wide pad-left-10 {{ $view === 'paydays' ? 'active' : '' }}"><a href="{{ route('paydays.index') }}" 
 							   class="list-group-item">Paydays</a></li>
 					</ul>

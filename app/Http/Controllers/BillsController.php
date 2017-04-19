@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use App\Bill;
-use App\Payee;
 use App\Http\Requests;
 
 class BillsController extends Controller {
