@@ -27,7 +27,7 @@ class BillsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		$payees = Payee::orderBy('name')->get();
+		$payees = Bill::select('payee_name')->get();
 		
 		return view('bills.create', compact('payees'));
 	}
@@ -39,7 +39,9 @@ class BillsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//
+		Bill::create($request->all());
+
+		return redirect('bills')->with('message', 'Payday saved');
 	}
 
 	/**

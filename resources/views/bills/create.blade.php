@@ -1,21 +1,16 @@
 @extends('layouts.main')
 <?php 
 $payees_select = array();	// Used as array for the select control
-$payees_array = array();	// Used in json_encode
 $mode = 'create';
 
 foreach ($payees as $payee) {
-	$payees_select[$payee->id] = $payee->name;
-	$payees_array[] = ["id" => "$payee->id", "name" => $payee->name];
+	$payees_select[] = $payee->payee_name;
 }
 
-$payees_list = json_encode($payees_array);
 ?>
-
 <script type="text/javascript">
-	var payees_list = {!! $payees_list !!};
+//	var payees_list = {!! $payees_selected }};
 </script>
-
 
 @section('title', 'Add Bill')
 

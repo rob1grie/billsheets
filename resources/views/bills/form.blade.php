@@ -23,19 +23,21 @@
 				</div>
 
 				<div class="form-group">
-					{!! Form::label('name', 'Payee Name', ['class' => 'control-label col-md-3']) !!}
+					{!! Form::label('payee_name', 'Payee Name', ['class' => 'control-label col-md-3']) !!}
 					<div class="col-md-8" id='name-div'>
-						{!! Form::text('name_text', null, 
+						{!! Form::text('payee_name', null, 
 						['class' => 'form-control', 
-						'id' => 'name_text', 
+						'id' => 'payee_name', 
 						'placeholder' => 'Enter the Payee\'s name',
 						'onBlur' => 'nameTextValidate()'
 						]) !!}
+
 						{!! Form::select('name_select', 
 						$payees_select, null, 
 						['class' => 'form-control', 
 						'id' => 'name_select', 
-						'placeholder' => 'Select the Payee']) !!}
+						'placeholder' => 'or select a previously saved Payee'
+						]) !!}
 					</div>
 				</div>
 
@@ -91,12 +93,15 @@
 <script type="text/javascript">
 
 	$(document).ready(function () {
+		// Set radio buttons onChange
 		$("input:radio[name=repeating]").change(isRepeating);
+
+		$('#name_select').change(function () {
+			$('#payee_name').val($('#name_select option:selected').html());
+		});
+
 		// Set One-Time to default
 		$('input:radio[name=repeating]').filter('[value="No"]').attr('checked', true);
-		// Hide select control and show text field
-		$('#name_select').hide();
-		$('#name_text').show();
 		// Hide Day of Month and show Date Due field
 		$('#day_of_month').hide();
 		$('input[name=date_due]').show();
@@ -104,19 +109,15 @@
 		$("label[for=day_of_month]").text("Date Due");
 		isRepeating();
 	});
-
+	
 	function isRepeating() {
 		if ($('input[name=repeating]:checked').val() === 'Yes') {
 			// Repeating 
-			$('#name_text').hide();
-			$('#name_select').show();
 			$('input[name=date_due]').hide();
 			$('#day_of_month').show();
 			$("label[for=day_of_month]").text("Day of Month");
 		} else {
 			// One-Time
-			$('#name_select').hide();
-			$('#name_text').show();
 			$('#day_of_month').hide();
 			$('input[name=date_due]').show();
 			$("label[for=day_of_month]").text("Date Due");
@@ -124,24 +125,31 @@
 	}
 
 	function nameTextValidate() {
-		// Validate that name_text entry doesn't already exist in Payees
-		var val = document.getElementById('name_text').value.toUpperCase();
+		// Validate that payee_name entry doesn't already exist in Payees
+		var val = document.getElementById('payee_name').value.toUpperCase();
 		for (index in payees_list) {
 			let payee = payees_list[index].name.toUpperCase();
 			if (payee === val) {
 				if (confirm("Payee " + payee + " already exists. Reuse this Payee?")) {
 					$('#name_select').value = payees_list[index].id;
-					$('#name_text').val(payees_list[index].name);
+					$('#payee_name').val(payees_list[index].name);
 				} else {
 					alert("The Payee Name field must be unique.\nMake some change in your entry so that it is unique");
 					$(document).ready(function () {
-						$('input[name=name_text]').focus();
+						$('input[name=payee_name]').focus();
 					});
 				}
-			} else {
-
 			}
 		}
+	}
+
+	function nameSelectChanged() {
+		// Selected Payee name changed. Populate payee_name field with selected value
+		$(document).ready(function () {
+
+			alert('selected: ', $("#name_select option:selected").text());
+		});
+//		$('#payee_name').val(payees_list[index].name);
 	}
 
 </script>
