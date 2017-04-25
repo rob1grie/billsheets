@@ -91,14 +91,20 @@
 
 @section('script')
 <script type="text/javascript">
+	// Define payees_list to store values in name_select
+	var payees_list;
 
+	// Execute when the document finishes loading
 	$(document).ready(function () {
 		// Set radio buttons onChange
 		$("input:radio[name=repeating]").change(isRepeating);
 
+		// If select control changes, set the payee_name field to the selected value
 		$('#name_select').change(function () {
 			$('#payee_name').val($('#name_select option:selected').html());
 		});
+		
+		payees_list = getNameSelectOptions();
 
 		// Set One-Time to default
 		$('input:radio[name=repeating]').filter('[value="No"]').attr('checked', true);
@@ -109,7 +115,21 @@
 		$("label[for=day_of_month]").text("Date Due");
 		isRepeating();
 	});
-	
+
+	function getNameSelectOptions() {
+		// Returns the collection of Payee names and IDs from name_select
+		let coll = [];
+
+		var select = document.getElementById('name_select');
+		// Skip first element that is placeholder
+		for (var i = 1; i < select.length; i++) {
+			var option = select.options[i];
+			coll.push({id:option.value, name:option.text});
+		}
+		console.log(coll);
+		return coll;
+	}
+
 	function isRepeating() {
 		if ($('input[name=repeating]:checked').val() === 'Yes') {
 			// Repeating 
@@ -127,6 +147,7 @@
 	function nameTextValidate() {
 		// Validate that payee_name entry doesn't already exist in Payees
 		var val = document.getElementById('payee_name').value.toUpperCase();
+		alert('val = ' + val);
 		for (index in payees_list) {
 			let payee = payees_list[index].name.toUpperCase();
 			if (payee === val) {
@@ -141,15 +162,6 @@
 				}
 			}
 		}
-	}
-
-	function nameSelectChanged() {
-		// Selected Payee name changed. Populate payee_name field with selected value
-		$(document).ready(function () {
-
-			alert('selected: ', $("#name_select option:selected").text());
-		});
-//		$('#payee_name').val(payees_list[index].name);
 	}
 
 </script>

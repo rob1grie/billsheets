@@ -6,11 +6,7 @@ $mode = 'create';
 foreach ($payees as $payee) {
 	$payees_select[] = $payee->payee_name;
 }
-
 ?>
-<script type="text/javascript">
-//	var payees_list = {!! $payees_selected }};
-</script>
 
 @section('title', 'Add Bill')
 
