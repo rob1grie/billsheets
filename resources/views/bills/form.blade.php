@@ -146,8 +146,11 @@
 
 	function nameTextValidate() {
 		// Validate that payee_name entry doesn't already exist in Payees
-		var val = document.getElementById('payee_name').value.toUpperCase();
-		alert('val = ' + val);
+		var payeeName = document.getElementById('payee_name');
+		var val = payeeName.value.toUpperCase();
+		payeeName.value = val;
+		
+		
 		for (index in payees_list) {
 			let payee = payees_list[index].name.toUpperCase();
 			if (payee === val) {
