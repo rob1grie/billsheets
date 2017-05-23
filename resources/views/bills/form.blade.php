@@ -28,8 +28,7 @@
 						{!! Form::text('payee_name', null, 
 						['class' => 'form-control', 
 						'id' => 'payee_name', 
-						'placeholder' => 'Enter the Payee\'s name',
-						'onBlur' => 'nameTextValidate()'
+						'placeholder' => 'Enter the Payee\'s name'
 						]) !!}
 
 						{!! Form::select('name_select', 
@@ -150,6 +149,7 @@
 		var val = payeeName.value.toUpperCase();
 		payeeName.value = val;
 		
+		alert('validate ' + val);
 		
 		for (index in payees_list) {
 			let payee = payees_list[index].name.toUpperCase();

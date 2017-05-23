@@ -11,4 +11,5 @@ class Bill extends Model
 	
 	protected $fillable = ['payee_name', 'due_date', 'budgeted_amount', 'amount_paid', 'account_number', 'payment_method'];
 	protected $dates = ['deleted_at'];
+	
 }
