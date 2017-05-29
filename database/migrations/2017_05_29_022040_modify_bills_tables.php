@@ -12,7 +12,7 @@ class ModifyBillsTables extends Migration
      */
     public function up()
     {
-        Schema::table('bills', function($table) {
+        Schema::table('bills', function(Blueprint $table) {
 			// Fields for repeating Bills
 			$table->boolean('repeating')->default(FALSE);
 			$table->integer('repeat_interval')->nullable()->default(1);	// Number of months
