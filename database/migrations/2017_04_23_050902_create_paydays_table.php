@@ -16,7 +16,9 @@ class CreatePaydaysTable extends Migration {
 			$table->date('start_date');
 			$table->integer('frequency');
 			$table->decimal('amount');
+			$table->boolean('repeating')->default(TRUE);
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

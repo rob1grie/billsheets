@@ -41,7 +41,7 @@ class BillsController extends Controller {
 	public function store(Request $request) {
 		Bill::create($request->all());
 
-		return redirect('bills')->with('message', 'Payday saved');
+		return redirect('bills')->with('message', 'New Bill saved');
 	}
 
 	/**

@@ -19,6 +19,8 @@ class ModifyBillsTables extends Migration
 			$table->integer('day_of_month')->nullable();
 			
 			// Fields for edited or manual Bills
+			$table->dropColumn('payment_method');
+			$table->boolean('is_auto')->default(FALSE);
 			$table->boolean('edited')->default(FALSE);
 			$table->date('due_date')->nullable()->change();
 		});

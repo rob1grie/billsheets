@@ -44,14 +44,14 @@
 					{!! Form::label('day_of_month', 'Day of Month', ['class' => 'control-label col-md-3']) !!}
 					<div class="col-md-8">
 						{!! Form::text('day_of_month', null, ['class' => 'form-control', 'size' => 5]) !!}
-						{!! Form::date('date_due', \Carbon\Carbon::now(), ['class' => 'form-control', 'size' => 5]) !!}
+						{!! Form::date('due_date', \Carbon\Carbon::now(), ['class' => 'form-control', 'size' => 5]) !!}
 					</div>
 				</div>
 
 				<div class="form-group">
-					{!! Form::label('default_amount', 'Budgeted Amount', ['class' => 'control-label col-md-3']) !!}
+					{!! Form::label('budgeted_amount', 'Budgeted Amount', ['class' => 'control-label col-md-3']) !!}
 					<div class="col-md-8">
-						{!! Form::text('default_amount', null, ['class' => 'form-control']) !!}
+						{!! Form::text('budgeted_amount', null, ['class' => 'form-control']) !!}
 					</div>
 				</div>
 
@@ -66,9 +66,9 @@
 					{!! Form::label('group', 'Payment Method', ['class' => 'control-label col-md-3']) !!}
 					<div class="col-md-5">
 						<span style="vertical-align: middle; padding-right: 15px;">
-							Manual {!! Form::radio('payment_method', 'Manual', true) !!}
+							Manual {!! Form::radio('is_auto', false, true) !!}
 						</span>
-						<span>Auto {!! Form::radio('payment_method', 'Auto') !!}</span>
+						<span>Auto {!! Form::radio('is_auto', true) !!}</span>
 					</div>
 				</div>
 			</div>
@@ -132,7 +132,7 @@
 	function isRepeating() {
 		if ($('input[name=repeating]:checked').val() === 'Yes') {
 			// Repeating 
-			$('input[name=date_due]').hide();
+			$('input[name=due_date]').hide();
 			$('#day_of_month').show();
 			$("label[for=day_of_month]").text("Day of Month");
 		} else {
