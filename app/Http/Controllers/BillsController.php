@@ -1,4 +1,5 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bill;
@@ -27,8 +28,8 @@ class BillsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		$payees = Bill::select('payee_name')->get();
-		
+		$payees = Bill::select('payee_name')->distinct()->orderBy('payee_name')->get();
+
 		return view('bills.create', compact('payees'));
 	}
 
@@ -39,7 +40,25 @@ class BillsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		Bill::create($request->all());
+		$inputs = $request->all();
+
+		$bill = new Bill();
+		$bill->payee_name = $inputs['payee_name'];
+		$bill->account_number = $inputs['account_number'];
+		$bill->budgeted_amount = $inputs['budgeted_amount'];
+		$bill->repeating = $inputs['repeating'] == 'Yes' ? true : false;
+		$bill->is_auto = $inputs['is_auto'] == '' ? true : false;
+
+		if ($bill->repeating) {
+			$bill->due_date = '';
+			$bill->day_of_month = $inputs['day_of_month'];
+		}
+		else {
+			$bill->due_date = $inputs['due_date'];
+			$bill->day_of_month = 0;
+		}
+
+		$bill->save();
 
 		return redirect('bills')->with('message', 'New Bill saved');
 	}

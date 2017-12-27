@@ -14,10 +14,10 @@
 				<div class="form-group">
 					<div class="col-md-8">
 						<span style="vertical-align: middle; padding-right: 15px;">
-							Repeating {!! Form::radio('repeating', 'Yes') !!}
+							Repeating {!! Form::radio('repeating', 'Yes', true) !!}
 						</span>
 						<span>
-							One-time {!! Form::radio('repeating', 'No', true) !!}
+							One-time {!! Form::radio('repeating', 'No') !!}
 						</span>
 					</div>
 				</div>
@@ -138,7 +138,7 @@
 		} else {
 			// One-Time
 			$('#day_of_month').hide();
-			$('input[name=date_due]').show();
+			$('input[name=due_date]').show();
 			$("label[for=day_of_month]").text("Date Due");
 		}
 	}
